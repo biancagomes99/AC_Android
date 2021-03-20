@@ -4,11 +4,10 @@
 
     <item
         android:id="@+id/action_buscar"
-        android:title="@string/action_buscar"
         android:icon="@drawable/ic_buscar_white"
-        app:showAsAction="always"
-        />
-
+        android:title="@string/action_buscar"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_add"
         android:title="@string/action_add"

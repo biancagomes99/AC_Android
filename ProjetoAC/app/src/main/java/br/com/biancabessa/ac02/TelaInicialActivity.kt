@@ -1,22 +1,29 @@
 package br.com.biancabessa.ac02
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_tela_inicial.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class TelaInicialActivity : DebugActivity() {
+    fun toast(message: String?) =
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_inicial)
 
         setSupportActionBar(toolbar)
 
-        supportActionBar?.title = "Lista"
+        supportActionBar?.title = "Inicio"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         btn_tela01.setOnClickListener{
@@ -61,6 +68,17 @@ class TelaInicialActivity : DebugActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        (menu?.findItem(R.id.action_buscar)?.actionView as SearchView?)?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                toast(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
         return true
     }
 
@@ -75,7 +93,8 @@ class TelaInicialActivity : DebugActivity() {
         }
 
         else if(id == R.id.action_buscar){
-            Toast.makeText(this, "Clicou pesquisa", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Clicou pesquisar", Toast.LENGTH_SHORT).show()
+
         }
 
         else if (id == android.R.id.home){
@@ -84,4 +103,5 @@ class TelaInicialActivity : DebugActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
 }

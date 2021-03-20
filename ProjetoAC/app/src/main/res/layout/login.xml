@@ -8,15 +8,15 @@
         android:id="@+id/imagebessa"
         android:layout_width="167dp"
         android:layout_height="149dp"
-        android:layout_marginHorizontal="110dp"
+        android:layout_gravity="center"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="160dp"
+        android:layout_gravity="center"
         android:text="Bem Vindo" />
 
     <EditText
