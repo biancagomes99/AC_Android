@@ -4,4 +4,6 @@
     <string name="texto_usuario">Usuário</string>
     <string name="action_buscar">Buscar</string>
     <string name="action_add">Adicionar</string>
+    <string name="nav_open">Abrir</string>
+    <string name="nav_close">Fechar</string>
 </resources>
