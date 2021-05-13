@@ -9,7 +9,7 @@ import java.io.Serializable
 class AddCadastro: Serializable {
 
     @PrimaryKey
-    var id: Long = 0
+    var id: Long? = null
     var usuario = ""
     var senha = ""
 
