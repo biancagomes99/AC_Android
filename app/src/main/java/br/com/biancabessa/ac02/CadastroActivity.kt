@@ -7,9 +7,10 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_cadastros.*
 
-class CadastroActivity : AppCompatActivity() {
+class CadastroActivity : DebugActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastros)
@@ -71,6 +72,11 @@ class CadastroActivity : AppCompatActivity() {
                 AddCadastroService.saveCadastroDB(d)
 
                 runOnUiThread {
+                    var intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("Produtos", this.cadastro.get(0))
+
+                    NotificationUtil.create(1, intent, "MS-Orfeu", "Cadastro concluido com sucesso")
+
                     finish()
                 }
             }.start()

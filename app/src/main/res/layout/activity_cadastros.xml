@@ -48,7 +48,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="invisible"
+            android:visibility="visible"
             android:id="@+id/recycle_cadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

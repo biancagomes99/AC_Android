@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.biancabessa.ac02.AddCadastroService.getAddCadastro
 import kotlinx.android.synthetic.main.activity_cadastros.*
 import kotlinx.android.synthetic.main.login.*
 
 
 class MainActivity : DebugActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
@@ -23,8 +25,11 @@ class MainActivity : DebugActivity() {
         campo_senha.setText(Prefs.getString("senha"))
         checkbox_login.isChecked = Prefs.getBoolean("checkLogin")
 
+        recycle_cadastro?.layoutManager = LinearLayoutManager(this)
+
         val context: Context = this
-        botao_login.setOnClickListener {
+
+        checkbox_login.setOnClickListener {
             Handler(Looper.getMainLooper()).postDelayed(object :  Runnable {
                 override fun run() {
                     val nome_usuario = campo_usuario.text.toString()
@@ -42,12 +47,6 @@ class MainActivity : DebugActivity() {
                     }
 
                     Prefs.setBoolean("checkbox_login", checkLogin)
-
-
-                        val intent = Intent(context, TelaInicialActivity::class.java)
-                        startActivity(intent)
-
-
                 }
             }, 3000)
             Toast.makeText(this, "Clocou no botão de login", Toast.LENGTH_SHORT).show()
@@ -73,5 +72,32 @@ class MainActivity : DebugActivity() {
                 val intent = Intent(this, CadastroActivity::class.java)
                 startActivity(intent)
             }
+
+        botao_login.setOnClickListener {
+            val intent = Intent(this, TelaInicialActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+    /*var cadastro = listOf<AddCadastro>()
+    override fun onResume() {
+        super.onResume()
+        Thread {
+            AddCadastroService.getCadastroDB()
+
+            runOnUiThread {
+                if (campo_usuario in cadastro && campo_senha in cadastro) {
+                    Toast.makeText(this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, TelaInicialActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }.start()
+    }*/
+
+    /*fun onClickCadastro(cadastro: AddCadastro){
+        val intent = Intent(this, TelaInicialActivity::class.java)
+        intent.putExtra("cadastro", cadastro)
+        startActivity(intent)
+    }*/
 }

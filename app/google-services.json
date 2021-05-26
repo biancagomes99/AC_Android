@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "27892266649",
+    "project_id": "ms-orfeu",
+    "storage_bucket": "ms-orfeu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27892266649:android:a901847d612ed05778ea08",
+        "android_client_info": {
+          "package_name": "br.com.biancabessa.ac02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27892266649-dludf9sf1h91ummrjcc58e0g1aktflnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTaRzkTZO00ufTZgH3qQV9vB70JxZrztk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27892266649-dludf9sf1h91ummrjcc58e0g1aktflnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
