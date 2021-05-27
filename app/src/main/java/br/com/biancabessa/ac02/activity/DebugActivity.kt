@@ -1,4 +1,4 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

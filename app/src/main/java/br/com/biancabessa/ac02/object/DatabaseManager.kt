@@ -1,6 +1,10 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.`object`
 
 import androidx.room.Room
+import br.com.biancabessa.ac02.CadastroDAO
+import br.com.biancabessa.ac02.ProdutoDAO
+import br.com.biancabessa.ac02.model.LMSApplication
+import br.com.biancabessa.ac02.model.LMSDatabase
 
 object DatabaseManager {
 
@@ -15,7 +19,11 @@ object DatabaseManager {
         ).build()
     }
 
-    fun getCadastroDAO(): CadastroDAO{
+    fun getCadastroDAO(): CadastroDAO {
         return dbInstance.cadastroDAO()
+    }
+
+    fun getProdutoDAO(): ProdutoDAO{
+        return dbInstance.produtoDAO()
     }
 }

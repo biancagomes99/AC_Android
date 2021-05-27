@@ -1,7 +1,10 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.model
 
 import android.content.Intent
 import android.util.Log
+import br.com.biancabessa.ac02.`object`.NotificationUtil
+import br.com.biancabessa.ac02.`object`.Prefs
+import br.com.biancabessa.ac02.activity.TelaAddProdActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

@@ -1,4 +1,4 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,13 +1,14 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.navigation.NavigationView
+import br.com.biancabessa.ac02.R
+import br.com.biancabessa.ac02.`object`.AddCadastroService
+import br.com.biancabessa.ac02.`object`.NotificationUtil
+import br.com.biancabessa.ac02.adapter.AddCadastroAdapter
+import br.com.biancabessa.ac02.model.AddCadastro
 import kotlinx.android.synthetic.main.activity_cadastros.*
 
 class CadastroActivity : DebugActivity() {
@@ -56,7 +57,6 @@ class CadastroActivity : DebugActivity() {
 
     fun eventoClick() {
         btn_cadastro.setOnClickListener {
-                //Toast.makeText(this, "checando", Toast.LENGTH_LONG).show()
             val textoUsuario = editText_usuario.text.toString()
             val textoSenha = editText_senha.text.toString()
 
@@ -64,10 +64,6 @@ class CadastroActivity : DebugActivity() {
             d.usuario = textoUsuario
             d.senha = textoSenha
 
-                //.makeText(this, "$textoUsuario", Toast.LENGTH_LONG).show()
-                //Toast.makeText(this, "$textoSenha", Toast.LENGTH_LONG).show()
-                //println("Teste " + d.toJson())
-                //Log.i("teste", "Teste" + d.toJson())
             Thread {
                 AddCadastroService.saveCadastroDB(d)
 

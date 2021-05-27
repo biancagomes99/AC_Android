@@ -1,4 +1,4 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.`object`
 
 import okhttp3.MediaType
 import okhttp3.OkHttpClient

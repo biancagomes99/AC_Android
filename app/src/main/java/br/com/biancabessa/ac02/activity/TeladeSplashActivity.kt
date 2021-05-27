@@ -1,9 +1,10 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import br.com.biancabessa.ac02.R
 
 class TeladeSplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

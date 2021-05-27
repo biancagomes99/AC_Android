@@ -1,6 +1,7 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.`object`
 
 import android.util.Log
+import br.com.biancabessa.ac02.model.AddCadastro
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

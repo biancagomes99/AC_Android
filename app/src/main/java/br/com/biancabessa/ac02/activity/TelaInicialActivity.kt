@@ -1,5 +1,6 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -9,44 +10,52 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.biancabessa.ac02.R
+import br.com.biancabessa.ac02.`object`.ProdutoPrefs
+import br.com.biancabessa.ac02.`object`.ProdutoService
+import br.com.biancabessa.ac02.adapter.ProdutosAdapterRV
+import br.com.biancabessa.ac02.model.ProdutoClasse
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_tela_inicial.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     fun toast(message: String?) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
+    //private val context: Context get() = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_inicial)
 
-        val nomeShared = Prefs.getString("nome_usuario")
+        val nomeShared = ProdutoPrefs.getString("nomedoproduto")
         Toast.makeText(this, "valor em SharedPreferences: $nomeShared", Toast.LENGTH_LONG).show()
 
         setSupportActionBar(toolbar)
 
         supportActionBar?.title = "Inicio"
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         configurarMenuLateral()
 
         recycle_prod?.layoutManager = LinearLayoutManager(this)
     }
 
-    //private var produtos = listOf<AddProd>()
-    //override fun onResume() {
-    //    super.onResume()
-    //    produtos = AddProdService.getAddProd()
-    //    recycle_prod?.adapter = AddProdAdapter(produtos){
-    //        onClickProduto(it)
-    //    }
-    //}
+    private var produtos = listOf<ProdutoClasse>()
+    override fun onResume() {
+        super.onResume()
+        Thread {
+            produtos = ProdutoService.getProdutosDB()
 
-    //fun onClickProduto(produto: AddProd){
-    //    Toast.makeText(this, "Clicou no produto ${produto.nome}", Toast.LENGTH_SHORT).show()
-    //}
+            runOnUiThread {
+                recycle_prod?.adapter = ProdutosAdapterRV(produtos) {
+                    Toast.makeText(this, "Clicou", Toast.LENGTH_LONG).show()
+                }
+            }
+        }.start()
+    }
 
+    //Função de busca na activity
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         (menu?.findItem(R.id.action_buscar)?.actionView as SearchView?)?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

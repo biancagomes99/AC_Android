@@ -1,4 +1,4 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.model
 
 import android.app.Application
 import java.lang.IllegalStateException
@@ -13,7 +13,7 @@ class LMSApplication: Application() {
     companion object{
         //singleton
         private var appInstance: LMSApplication? = null
-        fun getInstance(): LMSApplication{
+        fun getInstance(): LMSApplication {
             if (appInstance == null) {
                 throw IllegalStateException("Configurar application no Android Manifest")
             }

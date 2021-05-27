@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaAddProdActivity">
+    tools:context=".activity.TelaAddProdActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:text="Lista Compras" />
 
         <EditText
-            android:id="@+id/prod"
+            android:id="@+id/editText_prod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

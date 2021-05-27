@@ -1,6 +1,7 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.`object`
 
 import android.content.SharedPreferences
+import br.com.biancabessa.ac02.model.LMSApplication
 
 object Prefs {
 

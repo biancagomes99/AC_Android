@@ -1,4 +1,4 @@
-package br.com.biancabessa.ac02
+package br.com.biancabessa.ac02.`object`
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -7,6 +7,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import br.com.biancabessa.ac02.R
+import br.com.biancabessa.ac02.model.LMSApplication
 
 object NotificationUtil {
 
