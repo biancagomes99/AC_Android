@@ -4,9 +4,10 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_opcao01"
+            android:id="@+id/item_mapa"
             android:checked="true"
-            android:title="Botão 01" />
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="Localização" />
 
         <item
             android:id="@+id/nav_opcao02"

@@ -109,14 +109,9 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.nav_opcao01 -> {
-                val intent = Intent(this, TelaBotoes::class.java)
+            R.id.item_mapa -> {
+                val intent = Intent(this, MapasActivity::class.java)
                 Toast.makeText(this, "Tela 01", Toast.LENGTH_SHORT).show()
-
-                val params = Bundle()
-                params.putInt("flag", 1)
-                intent.putExtras(params)
-
                 startActivity(intent)
             }
 

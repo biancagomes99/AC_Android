@@ -15,7 +15,6 @@ class TelaBotoes : AppCompatActivity() {
         var params = intent.extras
         var flag = params?.getInt("flag")
         when(flag){
-            1 -> supportActionBar?.title = "Tela 01"
             2 -> supportActionBar?.title = "Tela 02"
             3 -> supportActionBar?.title = "Tela 03"
         }

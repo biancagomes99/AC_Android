@@ -6,4 +6,7 @@
     <string name="action_add">Adicionar</string>
     <string name="nav_open">Abrir</string>
     <string name="nav_close">Fechar</string>
+
+    <string name="API_KEY">AIzaSyB_Dcjj31u_9s2HPg3Lh2fWP6nNBUVss9k</string>
+
 </resources>
