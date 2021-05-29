@@ -1,13 +1,17 @@
 package br.com.biancabessa.ac02.activity
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.biancabessa.ac02.R
@@ -17,6 +21,7 @@ import br.com.biancabessa.ac02.adapter.ProdutosAdapterRV
 import br.com.biancabessa.ac02.model.ProdutoClasse
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_tela_inicial.*
+import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -80,7 +85,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         (menu?.findItem(R.id.action_buscar)?.actionView as SearchView?)?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+                override fun onQueryTextSubmit(query: String?): Boolean {
                 toast(query)
                 return false
             }
@@ -137,29 +142,39 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             }
 
             R.id.nav_opcao02 -> {
-                val intent = Intent(this, TelaBotoes::class.java)
-                Toast.makeText(this, "Tela 02", Toast.LENGTH_SHORT).show()
-
-                val params = Bundle()
-                params.putInt("flag", 2)
-                intent.putExtras(params)
-
-                startActivity(intent)
+                var flagTel = true
+                if (ActivityCompat.checkSelfPermission( this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "11988962650"))
+                    startActivity(intent)
+                }else{
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), 1)
+                }
             }
 
             R.id.nav_opcao03 -> {
-                val intent = Intent(this, TelaBotoes::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 Toast.makeText(this, "Tela 03", Toast.LENGTH_SHORT).show()
-
-                val params = Bundle()
-                params.putInt("flag", 3)
-                intent.putExtras(params)
 
                 startActivity(intent)
             }
         }
         layout_menu_lateral.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            1 -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission( this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "11988962650"))
+                    startActivity(intent)
+                }
+            }
+        }
     }
 
 }

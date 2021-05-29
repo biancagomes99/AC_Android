@@ -13,10 +13,4 @@
         android:title="@string/action_add"
         android:icon="@drawable/ic_adicionar_white"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/action_carregar"
-        android:title="Carregar"
-        android:icon="@drawable/ic_atualizar_white"
-        app:showAsAction="always"/>
 </menu>

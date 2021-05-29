@@ -1,6 +1,5 @@
 package br.com.biancabessa.ac02.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,4 +41,10 @@ class ProdutosAdapterRV(
 
         holder.itemView.setOnClickListener{onClick(produtos)}
     }
+
+    /*fun update(filtro: List<ProdutoClasse>){
+        listaDeProdutos.clear()
+        listaDeProdutos.addAll(filtro)
+        notifyDataSetChanged()
+    }*/
 }
