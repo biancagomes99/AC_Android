@@ -1,6 +1,6 @@
 package br.com.biancabessa.ac02.activity
 
-import android.content.Context
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -24,7 +24,6 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
     fun toast(message: String?) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-    //private val context: Context get() = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_inicial)
@@ -33,7 +32,6 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         Toast.makeText(this, "valor em SharedPreferences: $nomeShared", Toast.LENGTH_LONG).show()
 
         setSupportActionBar(toolbar)
-
         supportActionBar?.title = "Inicio"
 
         configurarMenuLateral()
@@ -49,10 +47,33 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
 
             runOnUiThread {
                 recycle_prod?.adapter = ProdutosAdapterRV(produtos) {
-                    Toast.makeText(this, "Clicou", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this, "Clicou", Toast.LENGTH_LONG).show()
+                    onClickProduto(it)
                 }
             }
         }.start()
+    }
+
+    fun onClickProduto(produto: ProdutoClasse){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Remover")
+        builder.setMessage("Você deseja remover o produto?")
+        builder.setPositiveButton("Remover"){dialog, which ->
+            Thread {
+                ProdutoService.deleteProdutoDB(produto)
+
+                runOnUiThread {
+                    val intent = Intent(this, TelaInicialActivity::class.java)
+                    intent.putExtra("produto", produto)
+                    startActivity(intent)
+                }
+            }.start()
+        }
+        builder.setNeutralButton("Cancelar"){_,_ ->
+            Toast.makeText(this,"Você cancelou a ação.",Toast.LENGTH_SHORT).show()
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
     //Função de busca na activity
