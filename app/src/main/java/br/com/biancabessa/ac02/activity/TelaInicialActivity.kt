@@ -2,10 +2,13 @@ package br.com.biancabessa.ac02.activity
 
 import android.Manifest
 import android.app.AlertDialog
+import android.app.SearchManager
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.MatrixCursor
 import android.net.Uri
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
@@ -26,8 +29,9 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    fun toast(message: String?) =
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private var produtos = listOf<ProdutoClasse>()
+
+    fun toast(message: String?) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +44,9 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         supportActionBar?.title = "Inicio"
 
         configurarMenuLateral()
-
         recycle_prod?.layoutManager = LinearLayoutManager(this)
     }
 
-    private var produtos = listOf<ProdutoClasse>()
     override fun onResume() {
         super.onResume()
         Thread {
@@ -52,7 +54,6 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
 
             runOnUiThread {
                 recycle_prod?.adapter = ProdutosAdapterRV(produtos) {
-                    //Toast.makeText(this, "Clicou", Toast.LENGTH_LONG).show()
                     onClickProduto(it)
                 }
             }
@@ -85,13 +86,13 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         (menu?.findItem(R.id.action_buscar)?.actionView as SearchView?)?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String?): Boolean {
                 toast(query)
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+                return true
             }
 
         })
@@ -137,12 +138,11 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         when(item.itemId){
             R.id.item_mapa -> {
                 val intent = Intent(this, MapasActivity::class.java)
-                Toast.makeText(this, "Tela 01", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Maps", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
             }
 
             R.id.nav_opcao02 -> {
-                var flagTel = true
                 if (ActivityCompat.checkSelfPermission( this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "11988962650"))
                     startActivity(intent)
@@ -153,7 +153,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
 
             R.id.nav_opcao03 -> {
                 val intent = Intent(this, MainActivity::class.java)
-                Toast.makeText(this, "Tela 03", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
 
                 startActivity(intent)
             }
@@ -176,5 +176,4 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
             }
         }
     }
-
 }

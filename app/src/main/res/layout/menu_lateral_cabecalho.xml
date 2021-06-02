@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@drawable/fundo"
+    android:background="@drawable/frutas"
     android:layout_gravity="bottom"
     android:padding="16dp">
 

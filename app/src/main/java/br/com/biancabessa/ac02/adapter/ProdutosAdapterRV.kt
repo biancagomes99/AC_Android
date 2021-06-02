@@ -7,12 +7,13 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.biancabessa.ac02.R
+import br.com.biancabessa.ac02.activity.TelaInicialActivity
 import br.com.biancabessa.ac02.model.ProdutoClasse
 import kotlinx.android.synthetic.main.item_lista_de_produtos.view.*
 
 class ProdutosAdapterRV(
-    val listaDeProdutos: List<ProdutoClasse>,
-    val onClick: (ProdutoClasse) -> Unit
+        var listaDeProdutos: List<ProdutoClasse>,
+        val onClick: (ProdutoClasse) -> Unit
 ): RecyclerView.Adapter<ProdutosAdapterRV.ViewHolderProduto>() {
 
     class ViewHolderProduto(view: View): RecyclerView.ViewHolder(view) {

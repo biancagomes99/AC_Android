@@ -30,10 +30,6 @@ class MainActivity : DebugActivity() {
         campo_senha.setText(Prefs.getString("senha"))
         checkbox_login.isChecked = Prefs.getBoolean("checkLogin")
 
-        //recycle_cadastro?.layoutManager = LinearLayoutManager(this)
-
-        val context: Context = this
-
         checkbox_login.setOnClickListener {
             Handler(Looper.getMainLooper()).postDelayed(object :  Runnable {
                 override fun run() {
