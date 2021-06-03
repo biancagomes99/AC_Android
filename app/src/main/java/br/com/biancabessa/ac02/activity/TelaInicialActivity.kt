@@ -11,12 +11,14 @@ import android.os.Bundle
 import android.provider.BaseColumns
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.biancabessa.ac02.R
 import br.com.biancabessa.ac02.`object`.ProdutoPrefs
 import br.com.biancabessa.ac02.`object`.ProdutoService
@@ -44,6 +46,7 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         supportActionBar?.title = "Inicio"
 
         configurarMenuLateral()
+
         recycle_prod?.layoutManager = LinearLayoutManager(this)
     }
 
@@ -85,13 +88,44 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
     //Função de busca na activity
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        (menu?.findItem(R.id.action_buscar)?.actionView as SearchView?)?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val searchView = menu?.findItem(R.id.action_buscar)?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 toast(query)
+                if (query == null || query.equals("")){
+                    recycle_prod?.adapter = ProdutosAdapterRV(produtos) {
+                        onClickProduto(it)
+                    }
+                }
+
+                var prodlist = produtos.filter {
+                    x -> x.nome.equals(query)
+                }
+
+                recycle_prod?.adapter = ProdutosAdapterRV(prodlist) {
+                    onClickProduto(it)
+                }
+
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+
+                if (newText == null || newText.equals("")){
+                    recycle_prod?.adapter = ProdutosAdapterRV(produtos) {
+                        onClickProduto(it)
+                    }
+                }
+                else {
+                    var prodlist = produtos.filter { x ->
+                        x.nome.contains(newText!!)
+                    }
+
+                    recycle_prod?.adapter = ProdutosAdapterRV(prodlist) {
+                        onClickProduto(it)
+                    }
+                }
+
                 return true
             }
 
