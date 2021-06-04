@@ -3,6 +3,7 @@ package br.com.biancabessa.ac02.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.biancabessa.ac02.R
 import br.com.biancabessa.ac02.`object`.AddCadastroService
@@ -10,6 +11,7 @@ import br.com.biancabessa.ac02.`object`.NotificationUtil
 import br.com.biancabessa.ac02.adapter.AddCadastroAdapter
 import br.com.biancabessa.ac02.model.AddCadastro
 import kotlinx.android.synthetic.main.activity_cadastros.*
+import kotlinx.android.synthetic.main.login.*
 
 class CadastroActivity : DebugActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +21,6 @@ class CadastroActivity : DebugActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         eventoClick()
-
-        //var cadastro = listOf<AddCadastro>()
 
         recycle_cadastro?.layoutManager = LinearLayoutManager(this)
     }
@@ -57,8 +57,10 @@ class CadastroActivity : DebugActivity() {
 
     fun eventoClick() {
         btn_cadastro.setOnClickListener {
+            //var cadastro = listOf<AddCadastro>()
             val textoUsuario = editText_usuario.text.toString()
             val textoSenha = editText_senha.text.toString()
+            val txtCorfirmaSenha = editText_corfirmasenha.text.toString()
 
             val d = AddCadastro()
             d.usuario = textoUsuario
@@ -68,12 +70,23 @@ class CadastroActivity : DebugActivity() {
                 AddCadastroService.saveCadastroDB(d)
 
                 runOnUiThread {
-                    var intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("Produtos", this.cadastro.get(0))
 
-                    NotificationUtil.create(1, intent, "MS-Orfeu", "Cadastro concluido com sucesso")
+                    if (d.usuario != "" && d.senha != "") {
+                        if (d.senha == txtCorfirmaSenha) {
+                            var intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("Produtos", this.cadastro.get(0))
 
-                    finish()
+                            NotificationUtil.create(1, intent, "MS-Orfeu", "Cadastro concluido com sucesso")
+
+                            finish()
+                        }
+                        Toast.makeText(this, "Confirme a senha", Toast.LENGTH_LONG).show()
+                    }
+
+                    else{
+                        Toast.makeText(this, "Login inválido", Toast.LENGTH_LONG).show()
+                    }
+
                 }
             }.start()
         }

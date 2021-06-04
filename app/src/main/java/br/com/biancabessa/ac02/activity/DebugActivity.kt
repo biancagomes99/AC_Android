@@ -4,15 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
-//É uma super Activity da MainActivity
-
 open class DebugActivity : AppCompatActivity() {
 
     private val TAG = "ProjetoAC"
     private val classname: String
         get(){
             val s = javaClass.name
-            //br.com.biancabessa.primeiraapp.DebugActivity
             return s.substring(s.lastIndexOf("."))
         }
 

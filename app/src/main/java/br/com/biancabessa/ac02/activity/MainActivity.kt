@@ -1,18 +1,14 @@
 package br.com.biancabessa.ac02.activity
 
-//import android.content.Intent
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.biancabessa.ac02.R
 import br.com.biancabessa.ac02.`object`.AddCadastroService
 import br.com.biancabessa.ac02.`object`.Prefs
 import br.com.biancabessa.ac02.model.AddCadastro
-import kotlinx.android.synthetic.main.activity_cadastros.*
 import kotlinx.android.synthetic.main.login.*
 
 
@@ -50,7 +46,6 @@ class MainActivity : DebugActivity() {
                     Prefs.setBoolean("checkbox_login", checkLogin)
                 }
             }, 3000)
-            Toast.makeText(this, "Clocou no botão de login", Toast.LENGTH_SHORT).show()
         }
 
         botao_novoUsuario.setOnClickListener {
@@ -68,9 +63,11 @@ class MainActivity : DebugActivity() {
                 }
 
                 if (existe.size != 0) {
-                    Toast.makeText(this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, TelaInicialActivity::class.java)
                     startActivity(intent)
+                }
+                else if (existe.size == 0){
+                    Toast.makeText(this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show()
                 }
             }
         }.start()

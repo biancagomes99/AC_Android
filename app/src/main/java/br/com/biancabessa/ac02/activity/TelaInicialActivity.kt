@@ -39,8 +39,10 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_inicial)
 
+/*
         val nomeShared = ProdutoPrefs.getString("nomedoproduto")
         Toast.makeText(this, "valor em SharedPreferences: $nomeShared", Toast.LENGTH_LONG).show()
+*/
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Inicio"
@@ -137,15 +139,12 @@ class TelaInicialActivity : DebugActivity(), NavigationView.OnNavigationItemSele
         val id = item.itemId
 
         if(id == R.id.action_add){
-            Toast.makeText(this, "Clicou adicionar", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(this, TelaAddProdActivity::class.java)
             startActivity(intent)
         }
 
         else if(id == R.id.action_buscar){
-            Toast.makeText(this, "Clicou pesquisar", Toast.LENGTH_SHORT).show()
-
+            Toast.makeText(this, "Pesquisar", Toast.LENGTH_SHORT).show()
         }
 
         else if (id == android.R.id.home){

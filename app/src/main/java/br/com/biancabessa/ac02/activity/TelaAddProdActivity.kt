@@ -28,11 +28,6 @@ class TelaAddProdActivity : DebugActivity() {
 
         carregarElementos()
 
-        /*ProdutosAdapterRV(this, arrayDeProdutos).let {
-            adapter = it
-            recyclerViewProduto.adapter = it
-        }*/
-
         botao_add.setOnClickListener {
             val editTextProd = editText_prod.text.toString()
 
